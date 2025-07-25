@@ -2,75 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SC-FC Feedback Form</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f7f7f7;
+      background: #f4f4f4;
+      text-align: center;
       padding: 20px;
     }
     .container {
-      max-width: 500px;
-      margin: auto;
       background: #fff;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 10px;
-    }
-    select, input[type="text"], textarea, button {
+    select, textarea, button {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
+      padding: 10px;
+      margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
     button {
       background: #007bff;
-      color: #fff;
-      border: none;
-      margin-top: 15px;
+      color: white;
       cursor: pointer;
+      font-size: 16px;
     }
     button:hover {
       background: #0056b3;
     }
-    .success {
-      color: green;
-      text-align: center;
-      margin-top: 15px;
-    }
-    .error {
-      color: red;
-      text-align: center;
-      margin-top: 15px;
-    }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <h2>SC-FC Feedback</h2>
-
-    <label>Select Language</label>
+    <h2>SC-FC Feedback Form</h2>
+    <label>Select Language / भाषा चुनें</label>
     <select id="language">
       <option value="English">English</option>
-      <option value="Hindi">हिंदी</option>
+      <option value="Hindi">Hindi</option>
     </select>
 
     <label>Select Site</label>
     <select id="site">
       <option value="Sort Centre (SC)">Sort Centre (SC)</option>
-      <option value="Fulfillment Centre (FC)">Fulfillment Centre (FC)</option>
+      <option value="Fulfilment Centre (FC)">Fulfilment Centre (FC)</option>
     </select>
 
     <label>Do you want to remain Anonymous?</label>
@@ -80,50 +58,54 @@
     </select>
 
     <label>Any other feedback?</label>
-    <textarea id="finalFeedback" rows="3"></textarea>
+    <textarea id="finalFeedback" rows="4" placeholder="Write your feedback here..."></textarea>
 
     <button onclick="submitFeedback()">Submit Feedback</button>
-
-    <div id="responseMsg"></div>
+    <p id="responseMessage"></p>
   </div>
 
   <script>
-    // ✅ PUT YOUR GOOGLE SCRIPT URL HERE
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAPkiJQnZKzH0NjJHtnnTJS6WzCwxvSU7E4Zmxep3iCF8dR29-mqqbNscGhoHg_7CN5g/exec";
+    // ✅ Replace this with YOUR deployed Google Apps Script Web App URL
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwZEupVDZOr1p3xxnv-re6qsSLD52-bOTeJrC6kQGGmJvTvYIhIZepQ3xOF_caJaui5KQ/exec";
 
-    async function submitFeedback() {
-      let feedbackData = {
-        language: document.getElementById("language").value,
-        site: document.getElementById("site").value,
-        anonymous: document.getElementById("anonymous").value,
-        finalFeedback: document.getElementById("finalFeedback").value
+    function submitFeedback() {
+      const language = document.getElementById('language').value;
+      const site = document.getElementById('site').value;
+      const anonymous = document.getElementById('anonymous').value;
+      const finalFeedback = document.getElementById('finalFeedback').value;
+
+      if (!finalFeedback.trim()) {
+        alert("Please enter feedback before submitting.");
+        return;
+      }
+
+      const feedbackData = {
+        language,
+        site,
+        anonymous,
+        finalFeedback
       };
 
-      document.getElementById("responseMsg").innerHTML = "Submitting...";
-
-      try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(feedbackData)
-        });
-
-        const text = await response.text(); // ✅ Google Script returns text
-        console.log("Raw Response:", text);
-
-        document.getElementById("responseMsg").innerHTML =
-          `<p class="success">✅ Feedback submitted successfully!</p>`;
-
-        // Clear form after success
-        document.getElementById("finalFeedback").value = "";
-
-      } catch (err) {
-        console.error(err);
-        document.getElementById("responseMsg").innerHTML =
-          `<p class="error">❌ Error submitting feedback: ${err}</p>`;
-      }
+      fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(feedbackData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          document.getElementById("responseMessage").innerText = "✅ Feedback submitted successfully!";
+          document.getElementById("finalFeedback").value = "";
+        } else {
+          document.getElementById("responseMessage").innerText = "❌ Error: " + data.message;
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        document.getElementById("responseMessage").innerText = "❌ Failed to submit feedback. Try again.";
+      });
     }
   </script>
-
 </body>
 </html>
