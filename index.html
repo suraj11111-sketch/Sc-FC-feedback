@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SC/FC Associate Feedback</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h2, h3 {
+      text-align: center;
+      color: #222;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    select, input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .radio-group {
+      margin-top: 10px;
+    }
+    .radio-group label {
+      display: inline-block;
+      margin-right: 15px;
+      font-weight: normal;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #0078D7;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #005ea3;
+    }
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>SC / FC Associate Feedback Form</h2>
+    
+    <!-- Language Selection -->
+    <label>Select Language / भाषा चुनें / ਭਾਸ਼ਾ ਚੁਣੋ</label>
+    <select id="languageSelect">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="pa">ਪੰਜਾਬੀ</option>
+    </select>
+    
+    <form id="feedbackForm">
+      
+      <!-- Site Selection -->
+      <label data-en="Select Site" data-hi="साइट चुनें" data-pa="ਸਾਈਟ ਚੁਣੋ"></label>
+      <select name="site" required>
+        <option value="SC">Sort Centre (SC)</option>
+        <option value="FC">Fulfilment Centre (FC)</option>
+      </select>
+      
+      <!-- Anonymous or Named -->
+      <label data-en="Do you want to remain Anonymous?" data-hi="क्या आप गुमनाम रहना चाहते हैं?" data-pa="ਕੀ ਤੁਸੀਂ ਗੁਮਨਾਮ ਰਹਿਣਾ ਚਾਹੁੰਦੇ ਹੋ?"></label>
+      <select id="anonymousSelect" name="anonymous" required>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+      
+      <!-- Employee Details -->
+      <div id="employeeDetails">
+        <label data-en="Employee ID" data-hi="कर्मचारी आईडी" data-pa="ਕਰਮਚਾਰੀ ਆਈਡੀ"></label>
+        <input type="text" name="empId">
+        
+        <label data-en="Your Name" data-hi="आपका नाम" data-pa="ਤੁਹਾਡਾ ਨਾਮ"></label>
+        <input type="text" name="empName">
+        
+        <label data-en="Vendor Name" data-hi="वेंडर का नाम" data-pa="ਵੇਂਡਰ ਦਾ ਨਾਮ"></label>
+        <input type="text" name="vendor">
+        
+        <label data-en="Function / Role" data-hi="कार्य / भूमिका" data-pa="ਕਿਰਦਾਰ / ਭੂਮਿਕਾ"></label>
+        <input type="text" name="function">
+      </div>
+      
+      <!-- WRAP ALL QUESTIONS IN THIS DIV -->
+      <div id="fullQuestions">
+        <hr>
+        <h3 data-en="Day 1 Culture" data-hi="पहले दिन की संस्कृति" data-pa="ਪਹਿਲੇ ਦਿਨ ਦੀ ਸੰਸਕ੍ਰਿਤੀ"></h3>
+        
+        <label data-en="Did you feel welcomed on Day 1?" data-hi="क्या आप पहले दिन स्वागत महसूस कर रहे थे?" data-pa="ਕੀ ਤੁਹਾਡਾ ਪਹਿਲੇ ਦਿਨ ਸੁਆਗਤ ਹੋਇਆ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="welcome" value="Yes"> Yes</label>
+          <label><input type="radio" name="welcome" value="No"> No</label>
+        </div>
+        
+        <label data-en="Was the orientation clear?" data-hi="क्या ओरिएंटेशन स्पष्ट था?" data-pa="ਕੀ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ ਸਪਸ਼ਟ ਸੀ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="orientation" value="Yes"> Yes</label>
+          <label><input type="radio" name="orientation" value="No"> No</label>
+        </div>
+        
+        <label data-en="Any suggestions for Day 1?" data-hi="पहले दिन के लिए कोई सुझाव?" data-pa="ਪਹਿਲੇ ਦਿਨ ਲਈ ਕੋਈ ਸੁਝਾਵ?"></label>
+        <textarea name="day1Suggestion"></textarea>
+        
+        <hr>
+        <h3 data-en="Training & Access" data-hi="प्रशिक्षण और एक्सेस" data-pa="ਟ੍ਰੇਨਿੰਗ ਅਤੇ ਪਹੁੰਚ"></h3>
+        
+        <label data-en="Was training sufficient?" data-hi="क्या प्रशिक्षण पर्याप्त था?" data-pa="ਕੀ ਟ੍ਰੇਨਿੰਗ ਯੋਗ ਸੀ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="training" value="Yes"> Yes</label>
+          <label><input type="radio" name="training" value="No"> No</label>
+        </div>
+        
+        <label data-en="Did you get system access on time?" data-hi="क्या आपको समय पर सिस्टम एक्सेस मिला?" data-pa="ਕੀ ਤੁਹਾਨੂੰ ਸਮੇਂ ਤੇ ਸਿਸਟਮ ਪਹੁੰਚ ਮਿਲੀ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="access" value="Yes"> Yes</label>
+          <label><input type="radio" name="access" value="No"> No</label>
+        </div>
+        
+        <label data-en="If training was not sufficient, what gap do you see?" data-hi="यदि प्रशिक्षण पर्याप्त नहीं था, तो कौन सी कमी थी?" data-pa="ਜੇ ਟ੍ਰੇਨਿੰਗ ਯੋਗ ਨਹੀਂ ਸੀ, ਕਿਹੜੀ ਘਾਟ ਸੀ?"></label>
+        <textarea name="trainingGap"></textarea>
+        
+        <hr>
+        <h3 data-en="People & Operations" data-hi="लोग और संचालन" data-pa="ਲੋਕ ਅਤੇ ਓਪਰੇਸ਼ਨ"></h3>
+        
+        <label data-en="Did you get your roster update on time?" data-hi="क्या आपको समय पर रोस्टर अपडेट मिला?" data-pa="ਕੀ ਤੁਹਾਨੂੰ ਸਮੇਂ ਤੇ ਰੋਸਟਰ ਅੱਪਡੇਟ ਮਿਲਿਆ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="roster" value="Yes"> Yes</label>
+          <label><input type="radio" name="roster" value="No"> No</label>
+        </div>
+        
+        <label data-en="Did vendor give necessary items like ID card, etc.?" data-hi="क्या वेंडर ने आवश्यक वस्तुएं दीं जैसे आईडी कार्ड आदि?" data-pa="ਕੀ ਵੇਂਡਰ ਨੇ ਲੋੜੀਂਦੀਆਂ ਚੀਜ਼ਾਂ ਦਿੱਤੀਆਂ (ਆਈਡੀ ਕਾਰਡ ਆਦਿ)?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="items" value="Yes"> Yes</label>
+          <label><input type="radio" name="items" value="No"> No</label>
+        </div>
+        
+        <label data-en="Is vendor communication clear & timely?" data-hi="क्या वेंडर का संचार स्पष्ट और समय पर है?" data-pa="ਕੀ ਵੇਂਡਰ ਦਾ ਸੰਚਾਰ ਸਪਸ਼ਟ ਅਤੇ ਸਮੇਂ ਤੇ ਹੈ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="comm" value="Yes"> Yes</label>
+          <label><input type="radio" name="comm" value="No"> No</label>
+        </div>
+        
+        <label data-en="Any people-related issues?" data-hi="क्या कोई लोगों से संबंधित समस्या है?" data-pa="ਕੀ ਕੋਈ ਲੋਕਾਂ ਨਾਲ ਸੰਬੰਧਿਤ ਸਮੱਸਿਆ ਹੈ?"></label>
+        <textarea name="peopleIssues"></textarea>
+        
+        <hr>
+        <h3 data-en="Salary & Payslip" data-hi="वेतन और पे स्लिप" data-pa="ਤਨਖਾਹ ਅਤੇ ਪੇ ਸਲਿੱਪ"></h3>
+        
+        <label data-en="Did you receive your salary on time?" data-hi="क्या आपको समय पर वेतन मिला?" data-pa="ਕੀ ਤੁਹਾਨੂੰ ਸਮੇਂ ਤੇ ਤਨਖਾਹ ਮਿਲੀ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="salary" value="Yes"> Yes</label>
+          <label><input type="radio" name="salary" value="No"> No</label>
+        </div>
+        
+        <label data-en="Did you receive your payslip?" data-hi="क्या आपको पे स्लिप मिली?" data-pa="ਕੀ ਤੁਹਾਨੂੰ ਪੇ ਸਲਿੱਪ ਮਿਲੀ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="payslip" value="Yes"> Yes</label>
+          <label><input type="radio" name="payslip" value="No"> No</label>
+        </div>
+        
+        <label data-en="Any concern regarding salary or payslip?" data-hi="वेतन या पे स्लिप से संबंधित कोई चिंता?" data-pa="ਤਨਖਾਹ ਜਾਂ ਪੇ ਸਲਿੱਪ ਬਾਰੇ ਕੋਈ ਚਿੰਤਾ?"></label>
+        <textarea name="salaryConcern"></textarea>
+        
+        <hr>
+        <h3 data-en="Floor Culture & 5S" data-hi="फ्लोर संस्कृति और 5S" data-pa="ਫਲੋਰ ਸੰਸਕ੍ਰਿਤੀ ਅਤੇ 5S"></h3>
+        
+        <label data-en="How is the work culture on the floor?" data-hi="फ्लोर पर कार्य संस्कृति कैसी है?" data-pa="ਫਲੋਰ ਉੱਤੇ ਕੰਮ ਦੀ ਸੰਸਕ੍ਰਿਤੀ ਕਿਵੇਂ ਹੈ?"></label>
+        <textarea name="culture"></textarea>
+        
+        <label data-en="Is 5S being maintained on the floor?" data-hi="क्या फ्लोर पर 5S बनाए रखा गया है?" data-pa="ਕੀ ਫਲੋਰ ਉੱਤੇ 5S ਬਣਾਈ ਰੱਖੀ ਗਈ ਹੈ?"></label>
+        <div class="radio-group">
+          <label><input type="radio" name="fiveS" value="Yes"> Yes</label>
+          <label><input type="radio" name="fiveS" value="No"> No</label>
+        </div>
+        
+        <label data-en="Any suggestion to improve culture & 5S?" data-hi="संस्कृति और 5S को सुधारने के लिए कोई सुझाव?" data-pa="ਸੰਸਕ੍ਰਿਤੀ ਅਤੇ 5S ਨੂੰ ਸੁਧਾਰਨ ਲਈ ਕੋਈ ਸੁਝਾਵ?"></label>
+        <textarea name="cultureSuggest"></textarea>
+      </div> <!-- end of fullQuestions -->
+      
+      <hr>
+      <!-- FINAL FEEDBACK ALWAYS VISIBLE -->
+      <label data-en="Any other feedback?" data-hi="कोई अन्य प्रतिक्रिया?" data-pa="ਕੋਈ ਹੋਰ ਫੀਡਬੈਕ?"></label>
+      <textarea name="finalFeedback"></textarea>
+      
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxniZqQ5C25pQc2bPcL-FGZ_xEXKyisE4nuv2BUqlKeCpU1uqjekic0jgcP_BS43-kB3A/exec"; 
+    
+    const langSelect = document.getElementById("languageSelect");
+    const anonSelect = document.getElementById("anonymousSelect");
+    const empDetailsDiv = document.getElementById("employeeDetails");
+    const fullQuestionsDiv = document.getElementById("fullQuestions");
+
+    // ✅ Function to update all labels based on selected language
+    function updateLanguage(lang) {
+      document.querySelectorAll("[data-en]").forEach(el => {
+        el.textContent = el.getAttribute("data-" + lang);
+      });
+    }
+
+    // ✅ Language change event
+    langSelect.addEventListener("change", () => {
+      updateLanguage(langSelect.value);
+    });
+
+    // ✅ Handle Anonymous selection
+    anonSelect.addEventListener("change", () => {
+      if (anonSelect.value === "Yes") {
+        empDetailsDiv.classList.add("hidden");
+        fullQuestionsDiv.classList.add("hidden");
+      } else {
+        empDetailsDiv.classList.remove("hidden");
+        fullQuestionsDiv.classList.remove("hidden");
+      }
+    });
+
+    // ✅ Run on page load → Show English labels immediately
+    window.addEventListener("DOMContentLoaded", () => {
+      updateLanguage("en");
+    });
+
+    // ✅ Submit form
+    document.getElementById("feedbackForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      let data = {};
+      formData.forEach((v, k) => data[k] = v);
+      
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => res.json())
+      .then(res => {
+        alert("✅ Feedback submitted successfully!");
+        this.reset();
+        empDetailsDiv.classList.remove("hidden");
+        fullQuestionsDiv.classList.remove("hidden");
+        updateLanguage("en"); // reset to default after submit
+      })
+      .catch(err => alert("❌ Error submitting feedback: " + err));
+    });
+  </script>
+</body>
+</html>
